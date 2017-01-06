@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Species implements Collection<Genome>, Fitness {
 
-	public static final float speciesCompatibilityRequirement = 18f;
+	public static final float speciesCompatibilityRequirement = 0.85f;
 
 	public int gen = 0, species = 0;
 
@@ -78,7 +78,7 @@ public class Species implements Collection<Genome>, Fitness {
 
 	public boolean isCompatible(Genome g) {
 		//return distanceFrom(g) / similarityTo(g) <= speciesCompatibilityRequirement;
-		return similarityTo(g)>=0.94f;
+		return similarityTo(g)>=speciesCompatibilityRequirement;
 	}
 
 	public ArrayList<Genome> getOffspring(int n) {

@@ -1,21 +1,27 @@
 package Snake;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import AI.Genome;
 import AI.Player;
-import General.HumanPlayer;
+import General.Config;
+import General.GeneralKeyListener;
+import General.Main;
 
 public class GenomePlayVisualizer {
 
 	Genome genome;
-	HumanPlayer ks =  new HumanPlayer();
-	Display ds=null;
+	GeneralKeyListener ks = new GeneralKeyListener();
+	Display ds = null;
 	Player p;
 
 	public GenomePlayVisualizer(Genome g) {
 		genome = g;
+		
+		System.out.println(System.getProperty("user.home") + "/Desktop" + genome.hashCode() + " - SNAKE.genome");
 
 		p = new SnakeAIPlayer(g);
-		
 
 	}
 
@@ -26,26 +32,53 @@ public class GenomePlayVisualizer {
 
 	public void visualize() {
 		Player p = new SnakeAIPlayer(genome);
-		SnakeGame game = new SnakeGame(40, p);
-		if(ds==null){
+		SnakeGame game = new SnakeGame(30, p);
+		if (ds == null) {
 			ds = new Display(game, ks);
 		}
-		
-		
+
 		int d = 100;
-		
+
 		ds.game = game;
 		long lastFrame = System.currentTimeMillis();
 
-		while (!game.GameOver && !ks.skip && !ks.keepSkipping) {
+		while (!ks.skip && !ks.keepSkipping) {
+			
+			if(game.GameOver){
+				game = new SnakeGame(30, p);
+				ds.game=game;
+			}
+			
+			if (Config.save) {
+
+				Config.save = false;
+
+				saveCurrentGenome();
+			}
+
 			if (System.currentTimeMillis() - lastFrame > d) {
 				lastFrame = System.currentTimeMillis();
 
-				game.update();
+				if (!Main.paused) {
+					game.update();
+				}
 				ds.repaint();
 			}
 		}
-		
-		ks.skip=false;
+
+		ks.skip = false;
+	}
+
+	public void saveCurrentGenome() {
+		try {
+			PrintWriter pw = new PrintWriter(System.getProperty("user.home") + "/Desktop/" + genome.hashCode() + " - SNAKE.genome");
+			
+			pw.write(genome.getSave().toJSONString());
+			pw.flush();
+			pw.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

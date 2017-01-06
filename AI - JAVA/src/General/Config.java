@@ -5,7 +5,9 @@ public class Config {
 
 	// 0-Snake 1-Pong Default-XOR
 	public static final int game = 0;
-
+	
+	public static boolean save = false;
+	
 	public static int[] getDimensions() {
 		
 		switch (game) {

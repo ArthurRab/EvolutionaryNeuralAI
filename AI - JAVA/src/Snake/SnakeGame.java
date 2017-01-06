@@ -35,7 +35,7 @@ public class SnakeGame implements forAI {
 		snake.add(new Vector2(size / 2 - 2, size / 2));
 		snake.add(new Vector2(size / 2 - 3, size / 2));
 
-		food = new Vector2[size * size / 10];
+		food = new Vector2[size * size / 30];
 
 		for (int i = 0; i < food.length; i++) {
 			food[i] = new Vector2();
@@ -52,7 +52,7 @@ public class SnakeGame implements forAI {
 	public void update() {
 		if (!GameOver) {
 
-			if (framesSinceLastFood >= 5) {
+			if (framesSinceLastFood >= 8) {
 				if (snake.size() <= 1) {
 					GameOver = true;
 				} else {

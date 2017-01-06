@@ -37,7 +37,6 @@ public class Evolver implements Collection<Genome> {
 		while ((millis < 0 || System.currentTimeMillis() - startTime < millis) && species.size() > 0) {
 			// Lets it play the game to set the fitness
 			float bestFitness = 0;
-			boolean improved = false;
 			counter++;
 			float worstFitness = -1;
 			for (Genome g : this) {
@@ -45,7 +44,6 @@ public class Evolver implements Collection<Genome> {
 				if (g.getFitness() > bestFitness) {
 					bestFitness = g.getFitness();
 					best = g.cpy();
-					improved = true;
 				}
 
 				if (g.getFitness() < worstFitness || worstFitness < 0) {
@@ -64,7 +62,7 @@ public class Evolver implements Collection<Genome> {
 			}
 
 			for (Genome genome : this) {
-				genome.addToFitness(-worstFitness / 10);
+				genome.addToFitness(-worstFitness / 3);
 			}
 
 			if (species.size() >= 15 && false) {

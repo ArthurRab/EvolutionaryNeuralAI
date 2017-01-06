@@ -11,7 +11,7 @@ public class GenomeTester implements Tester {
 
 	@Override
 	public void test(Genome g) {
-		for (int i = 2; i < 3; i++) {
+		for (int i = 1; i < 2; i++) {
 			for (int k = 0; k < 4; k++) {
 				Player p = new SnakeAIPlayer(g);
 				SnakeGame game = new SnakeGame(size[i], p);

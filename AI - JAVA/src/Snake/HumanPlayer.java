@@ -1,16 +1,16 @@
-package General;
+package Snake;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import AI.Player;
+import General.Main;
 
 public class HumanPlayer implements Player, KeyListener {
 
 	boolean[] input = new boolean[4];
 	float fitness;
-	public boolean skip = false;
-	public boolean keepSkipping = false;
+	
 	private int UP = KeyEvent.VK_UP, DOWN = KeyEvent.VK_DOWN, LEFT = KeyEvent.VK_LEFT, RIGHT = KeyEvent.VK_RIGHT;
 
 	public HumanPlayer(int fitnessLength, int controlScheme) {
@@ -56,10 +56,6 @@ public class HumanPlayer implements Player, KeyListener {
 			System.exit(0);
 		} else if (key.getKeyCode() == KeyEvent.VK_P) {
 			Main.paused = !Main.paused;
-		} else if (key.getKeyCode() == KeyEvent.VK_SPACE) {
-			skip = true;
-		} else if (key.getKeyCode() == KeyEvent.VK_ENTER) {
-			keepSkipping = !keepSkipping;
 		}
 	}
 

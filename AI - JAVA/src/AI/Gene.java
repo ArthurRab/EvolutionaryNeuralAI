@@ -1,8 +1,9 @@
 package AI;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.json.simple.JSONArray;
 
-public class Gene {
+public class Gene implements Saveable {
 
 	public int in, out;
 	public float strength;
@@ -17,6 +18,10 @@ public class Gene {
 		ID = GeneIDGen.getInstance().getID(this);
 	}
 
+	public Gene(JSONArray ja) {
+		load(ja);
+	}
+
 	public Gene(int IN, int OUT, float S) {
 		this(IN, OUT, S, true);
 	}
@@ -24,8 +29,6 @@ public class Gene {
 	public int getID() {
 		return ID;
 	}
-
-
 
 	public boolean equals(Object o) {
 		if (o.getClass() != this.getClass()) {
@@ -49,19 +52,43 @@ public class Gene {
 	}
 
 	public Gene cpy() {
-		return new Gene(in, out, strength,enabled);
+		return new Gene(in, out, strength, enabled);
 	}
-	
-	public void disable(){
-		enabled=false;
+
+	public void disable() {
+		enabled = false;
 	}
-	public void enable(){
-		enabled=true;
+
+	public void enable() {
+		enabled = true;
 	}
-	public void switchEnabled(){
-		enabled=!enabled;
+
+	public void switchEnabled() {
+		enabled = !enabled;
 	}
-	public boolean getEnabled(){
+
+	public boolean getEnabled() {
 		return enabled;
+	}
+
+	@Override
+	public JSONArray getSave() {
+		JSONArray ja = new JSONArray();
+
+		ja.add(in);
+		ja.add(out);
+		ja.add(strength);
+		ja.add(enabled);
+
+		return ja;
+	}
+
+	@Override
+	public void load(JSONArray ja) {
+		in = Integer.parseInt(ja.get(0).toString());
+		out = Integer.parseInt(ja.get(1).toString());
+		strength = Float.parseFloat(ja.get(2).toString());
+		enabled = Boolean.parseBoolean(ja.get(3).toString());
+		ID = GeneIDGen.getInstance().getID(this);
 	}
 }

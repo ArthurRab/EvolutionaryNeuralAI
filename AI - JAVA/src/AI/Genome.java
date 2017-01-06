@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.json.simple.JSONArray;
+
 import General.Config;
 
-public class Genome extends HashMap<Integer, Gene> implements Fitness {
+public class Genome extends HashMap<Integer, Gene> implements Fitness, Saveable {
 
-	public static final float linkMutation = 0.12f, nodeMutation = 0.02f, strengthMutation = 0.2f, linkLoss = 0.03f,
+	public static final float linkMutation = 0.1f, nodeMutation = 0.04f, strengthMutation = 0.25f, linkLoss = 0.03f,
 			nodeLoss = 0.001f;
 	/**
 	 * 
@@ -49,6 +51,10 @@ public class Genome extends HashMap<Integer, Gene> implements Fitness {
 			put(geneID, g.get(geneID).cpy());
 		}
 		fitness = 0;
+	}
+
+	public Genome(JSONArray ja) {
+		load(ja);
 	}
 
 	public void addGene(Gene g) {
@@ -295,6 +301,41 @@ public class Genome extends HashMap<Integer, Gene> implements Fitness {
 	}
 
 	public boolean equals(Object o) {
-		return this == o;
+		return super.equals(o);
+	}
+
+	@Override
+	public JSONArray getSave() {
+		JSONArray ja = new JSONArray();
+
+		ja.add(inX);
+		ja.add(inY);
+		ja.add(outX);
+		ja.add(outY);
+
+		for (Gene g : genes.values()) {
+			ja.add(g.getSave());
+		}
+
+		return ja;
+	}
+
+	@Override
+	public void load(JSONArray ja) {
+		inX = Integer.parseInt(ja.remove(0).toString());
+		inY = Integer.parseInt(ja.remove(0).toString());
+		outX = Integer.parseInt(ja.remove(0).toString());
+		outY = Integer.parseInt(ja.remove(0).toString());
+
+		largestIn = inX * inY;
+		smallestIn = 0;
+		smallestOut = largestIn + 1;
+		numOuts = outX * outY;
+		largestOut = smallestOut + numOuts - 1;
+
+		for (Object o : ja) {
+			Gene g = new Gene((JSONArray) o);
+			put(g.ID, g);
+		}
 	}
 }
