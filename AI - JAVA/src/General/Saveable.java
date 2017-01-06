@@ -1,9 +1,11 @@
 package General;
 
+import org.json.simple.JSONObject;
+
 public interface Saveable {
 
-	public String saveToString();
+	public JSONObject getSave();
 	
-	public void loadFromString();
+	public void load(JSONObject ja);
 	
 }

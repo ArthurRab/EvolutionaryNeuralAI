@@ -71,11 +71,14 @@ public class GenomePlayVisualizer {
 
 	public void saveCurrentGenome() {
 		try {
-			PrintWriter pw = new PrintWriter(System.getProperty("user.home") + "/Desktop/" + genome.hashCode() + " - SNAKE.genome");
+			
+			String save = System.getProperty("user.home") + "/Desktop/" + genome.hashCode() + " - SNAKE.genome";
+			PrintWriter pw = new PrintWriter(save);
 			
 			pw.write(genome.getSave().toJSONString());
 			pw.flush();
 			pw.close();
+			System.out.println("Saved to: "+save);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

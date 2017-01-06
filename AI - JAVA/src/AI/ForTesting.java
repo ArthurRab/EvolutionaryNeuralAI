@@ -4,15 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
 
 import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import Snake.GenomePlayVisualizer;
@@ -50,7 +48,7 @@ public class ForTesting {
 
 		try {
 
-			Genome g = new Genome((JSONArray) jp.parse(new FileReader(new File(f.getAbsolutePath()))));
+			Genome g = new Genome((JSONObject) jp.parse(new FileReader(new File(f.getAbsolutePath()))));
 
 			GenomePlayVisualizer gpv = new GenomePlayVisualizer(g);
 			

@@ -2,6 +2,9 @@ package AI;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import General.Saveable;
 
 public class Gene implements Saveable {
 
@@ -18,7 +21,7 @@ public class Gene implements Saveable {
 		ID = GeneIDGen.getInstance().getID(this);
 	}
 
-	public Gene(JSONArray ja) {
+	public Gene(JSONObject ja) {
 		load(ja);
 	}
 
@@ -72,23 +75,23 @@ public class Gene implements Saveable {
 	}
 
 	@Override
-	public JSONArray getSave() {
-		JSONArray ja = new JSONArray();
+	public JSONObject getSave() {
+		JSONObject ja = new JSONObject();
 
-		ja.add(in);
-		ja.add(out);
-		ja.add(strength);
-		ja.add(enabled);
+		ja.put("in",in);
+		ja.put("out",out);
+		ja.put("strength",strength);
+		ja.put("enabled",enabled);
 
 		return ja;
 	}
 
 	@Override
-	public void load(JSONArray ja) {
-		in = Integer.parseInt(ja.get(0).toString());
-		out = Integer.parseInt(ja.get(1).toString());
-		strength = Float.parseFloat(ja.get(2).toString());
-		enabled = Boolean.parseBoolean(ja.get(3).toString());
+	public void load(JSONObject ja) {
+		in = Integer.parseInt(ja.get("in").toString());
+		out = Integer.parseInt(ja.get("out").toString());
+		strength = Float.parseFloat(ja.get("strength").toString());
+		enabled = Boolean.parseBoolean(ja.get("enabled").toString());
 		ID = GeneIDGen.getInstance().getID(this);
 	}
 }
