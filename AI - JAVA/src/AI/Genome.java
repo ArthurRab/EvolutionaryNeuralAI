@@ -66,7 +66,11 @@ public class Genome extends HashMap<Integer, Gene> implements Fitness, Saveable 
 	}
 
 	public float getFitness() {
-		return fitness / (float) Math.pow(size() + 100, 0.1);
+		return fitness / (float) Math.pow(size() + 100, 0.2);
+	}
+	
+	public float getRawFitness(){
+		return fitness;
 	}
 
 	public void addToFitness(float f) {

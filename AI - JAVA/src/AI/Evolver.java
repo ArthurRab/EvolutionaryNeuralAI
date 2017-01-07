@@ -41,13 +41,13 @@ public class Evolver implements Collection<Genome> {
 			float worstFitness = -1;
 			for (Genome g : this) {
 				Config.getTester().test(g);
-				if (g.getFitness() > bestFitness) {
-					bestFitness = g.getFitness();
+				if (g.getRawFitness() > bestFitness) {
+					bestFitness = g.getRawFitness();
 					best = g.cpy();
 				}
 
-				if (g.getFitness() < worstFitness || worstFitness < 0) {
-					worstFitness = g.getFitness();
+				if (g.getRawFitness() < worstFitness || worstFitness < 0) {
+					worstFitness = g.getRawFitness();
 				}
 			}
 

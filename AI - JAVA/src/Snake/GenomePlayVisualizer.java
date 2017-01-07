@@ -33,6 +33,7 @@ public class GenomePlayVisualizer {
 	public void visualize() {
 		Player p = new SnakeAIPlayer(genome);
 		SnakeGame game = new SnakeGame(30, p);
+		genome.setFitness(0);
 		if (ds == null) {
 			ds = new Display(game, ks);
 		}

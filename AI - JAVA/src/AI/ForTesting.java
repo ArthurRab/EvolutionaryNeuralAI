@@ -18,15 +18,15 @@ import Snake.GenomePlayVisualizer;
 public class ForTesting {
 
 	public static void main(String[] args) {
-		//loadGenome();
-		runTests();
+		loadGenome();
+		//runTests();
 		
 	}
 
 	public static void runTests() {
 		GeneIDGen.getInstance();
 
-		Evolver e = new Evolver(1000);
+		Evolver e = new Evolver(500);
 
 		Set<Genome> s = new HashSet<Genome>();
 

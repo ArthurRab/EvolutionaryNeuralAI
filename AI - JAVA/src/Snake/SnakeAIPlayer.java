@@ -36,7 +36,7 @@ public class SnakeAIPlayer implements Player {
 
 		int[] dim = { genome.inX, genome.inY, genome.outX, genome.outY };
 
-		float[][] vision = new float[Config.getDimensions()[0]][Config.getDimensions()[1]];
+		float[][] vision = new float[dim[0]][dim[1]];
 		Vector2 headPos = null;
 		for (int i = 0; i < state.length && headPos == null; i++) {
 			for (int j = 0; j < state[i].length && headPos == null; j++) {
