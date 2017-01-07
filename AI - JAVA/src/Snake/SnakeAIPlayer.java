@@ -34,7 +34,7 @@ public class SnakeAIPlayer implements Player {
 	@Override
 	public boolean[] getInput(int[][] state) {
 
-		int[] dim = Config.getDimensions();
+		int[] dim = { genome.inX, genome.inY, genome.outX, genome.outY };
 
 		float[][] vision = new float[Config.getDimensions()[0]][Config.getDimensions()[1]];
 		Vector2 headPos = null;
@@ -47,7 +47,7 @@ public class SnakeAIPlayer implements Player {
 		}
 
 		for (int i = (int) (-dim[0] / 2); i < (int) (dim[0] / 2) + 1; i++) {
-			for (int j = (int) (-dim[1] / 2 + 1); j < (int) (dim[1] / 2) ; j++) {
+			for (int j = (int) (-dim[1] / 2 + 1); j < (int) (dim[1] / 2); j++) {
 				if (i + headPos.x >= 0 && i + headPos.x < state.length && j + headPos.y >= 0
 						&& j + headPos.y < state[0].length) {
 					vision[i + dim[0] / 2][j + dim[1] / 2 - 1] = state[i + headPos.x][j + headPos.y];
@@ -76,7 +76,7 @@ public class SnakeAIPlayer implements Player {
 		for (int i = 0; i < 4; i++) {
 			ans[i] = (temp[i][0] > 0);
 		}
-		
+
 		return ans;
 	}
 

@@ -12,7 +12,7 @@ public class Config {
 		
 		switch (game) {
 		case 0:
-			int[] temp = {11,12,4,1};
+			int[] temp = {5,6,4,1};
 			return temp;
 		default:
 			int[] temp1 = {2,1,1,1};

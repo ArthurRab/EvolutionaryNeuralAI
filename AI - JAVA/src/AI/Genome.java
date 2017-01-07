@@ -23,7 +23,8 @@ public class Genome extends HashMap<Integer, Gene> implements Fitness, Saveable 
 	private static final long serialVersionUID = 8654629149967612426L;
 	public HashMap<Integer, Gene> genes = this;
 	private float fitness;
-	private int largestIn, largestOut, smallestIn = 0, smallestOut, numOuts, inX, inY, outX, outY;
+	private int largestIn, largestOut, smallestIn = 0, smallestOut, numOuts;
+	public int inX, inY, outX, outY;
 	Random rand = new Random();
 
 	public Genome(int inX, int inY, int outX, int outY) {

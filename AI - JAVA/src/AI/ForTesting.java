@@ -18,8 +18,8 @@ import Snake.GenomePlayVisualizer;
 public class ForTesting {
 
 	public static void main(String[] args) {
-		loadGenome();
-		//runTests();
+		//loadGenome();
+		runTests();
 		
 	}
 
