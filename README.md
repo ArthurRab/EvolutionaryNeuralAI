@@ -8,3 +8,15 @@ There are also no time steps invloved, the network design simply takes in values
 (The same network will provide the same output whenever given the same input. Identical inputs cannot provide different outputs when dealing with the same network)
 
 I have a game of snake which is the first thing this was meant for, but I may add some other types of games to see where the algorithm works best.
+
+Before doing anything.
+
+![Pre](https://imgur.com/fhiIfmm.gif)
+
+After a little bit.
+
+![Early](https://imgur.com/neqzf0s.gif)
+
+After a while.
+
+![Late](https://imgur.com/QpVX5Op.gif)

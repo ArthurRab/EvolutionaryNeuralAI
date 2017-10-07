@@ -53,7 +53,7 @@ public class Evolver implements Collection<Genome> {
 
 			System.out.printf("Best Fitness: %s, Its size: %d ", bestFitness, best.genes.size());
 			print();
-			best.print();
+			//best.print();
 
 			ds.setGenome(best);
 
